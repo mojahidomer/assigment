@@ -104,7 +104,7 @@ app.get('/delete/',async(req,resp)=>{
 	}
 })
 
-app.use('/api/user',userRegister);
+//app.use('/api/user',userRegister);
 app.use('/api/moneytransfer/',moneytransfer)
 
 //=>{//
