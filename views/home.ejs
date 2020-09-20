@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <!-- Twitter meta-->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@pratikborsadiya">
+    <meta property="twitter:creator" content="@pratikborsadiya">
+    <title>TSLPL</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"  crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+ <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!------ Include the above in your HEAD tag ---------->
+
+</head>
+<style>
+
+</style>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  
+  <a class="navbar-brand" href="#">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse pull-rights" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/api/moneytransfer/">Transaction Money</a>
+      </li>
+   
+    
+    
+  </div>
+</ul>
+
+</nav>
+  <div class="container ">
+
+  <div class="row mt-5">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus-circle"></i> AddAccount</button>
+  </div>
+
+  <%
+    if(error){
+
+
+  %>
+  <div class="row">
+
+  </div>
+  <%
+    }  
+    %>
+<div class="row mt-2">
+<table class="table table-bordered ">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+       <th scope="col">User Names</th>
+      <th scope="col">Account Id</th>
+      <th scope="col">Account Type</th>
+      <th scope="col">Amount</th>
+       <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%
+    let i = 0;
+     data.forEach(data2=>{
+    // console.log('jhasd'+data2)
+     i+=1
+  
+    %>
+    <tr>
+      <form  method="get" action="/delete">
+      <th scope="row"><%=i %></th>
+      <td><%- data2['UserName']%></td>
+      <td><%- data2['AccountId']%></td>
+      <td><%- data2['AccountType']%></td>
+      <td><%- data2['Amount']%></td>
+      <td><button type="submit" class="btn btn-sm btn-danger" id="ide" name="id" onclick="myFunction(this.value)" value="<%- data2['_id'] %>"><i class="fa fa-trash"></i></button></td>
+    </form>
+    </tr>
+    <%
+       })
+    %>
+    
+  </tbody>
+</table>
+</div>
+</div>
+<!--
+<script src="javascripts/form-validation.js"></script>
+!-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form method="post" action="/">
+
+               <div class="form-group row">
+                  <label for="staticEmail" class="col-sm-3 col-form-label">User Name</label>
+                  <div class="col-sm-9">
+                    <input type="text" required  name="username" class="form-control" id="staticEmail" >
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <label for="staticEmail" class="col-sm-3 col-form-label">Account No</label>
+                  <div class="col-sm-9">
+                    <input type="Number" required min="100000" max="9999999999" name="AccountIds" class="form-control" id="staticEmail" >
+                  </div>
+                </div>
+               
+
+                 <div class="form-group row">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Account Type</label>
+                  <div class="col-sm-9">
+                   <select id="inputState" name="AccountType" class="form-control">
+                      <option selected> Savings</option>
+                      <option value ="Current">Current</option>
+                       <option value ="BasicSavings">BasicSavings</option>
+                    </select>
+                  </div>
+                  
+                </div>
+                <div class="form-group row">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Amount</label>
+                  <div class="col-sm-9">
+                        <input type="number"  required name="Amount" class="form-control" id="inputPassword">
+                  </div>
+                  
+                </div>
+
+                 <div class="form-group row">
+                   <div class="col-sm-9">
+                    <button class="btn btn-primary" type="submit">Transfer</button>
+                </div>
+                 </div>
+
+</form>
+      </div>
+     
+    </div>
+  </div>
+</div>
+<script>
+ function myFunction(data){
+   // alert('hello'+data)
+    document.getElementById("ide").submit();
+  }
+</script>
+</body>
+</html>
